@@ -85,6 +85,32 @@ describe('getQueryModifier(query)', function() {
     assert(q2.$select === undefined);
   });
 
+  it('extracts `$populate` operators, joining them if they are an array', function() {
+    var q1 = {
+      $populate: 'something'
+    };
+
+    var modifier1 = getQueryModifier(q1);
+    var populate1;
+    var query1 = { populate: function(s) { populate1 = s; return this; } };
+    modifier1(query1);
+
+    assert(populate1 === 'something');
+    assert(q1.$populate === undefined);
+
+    var q2 = {
+      $populate: [ 'here', 'we', 'are' ]
+    };
+
+    var modifier2 = getQueryModifier(q2);
+    var populate2;
+    var query2 = { populate: function(s) { populate2 = s; return this; } };
+    modifier2(query2);
+
+    assert(populate2 === 'here we are');
+    assert(q2.$populate === undefined);
+  });
+
   it('accepts an `options.ignore` parameter with operators to ignore', function() {
     var q = {
       $select: '+something -here',
