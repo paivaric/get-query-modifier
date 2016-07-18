@@ -1,6 +1,6 @@
 {
   "name": "get-query-modifier",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Helper for parsing mongoose mongodb query operators.",
   "main": "lib/index.js",
   "scripts": {
