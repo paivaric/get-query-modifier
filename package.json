@@ -47,5 +47,8 @@
     "coveralls": "^2.11.0",
     "mocha": "^2.4.5",
     "mocha-spec-cov-alt": "^1.1.1"
+  },
+  "dependencies": {
+    "mongoose-deep-populate": "^3.0.0"
   }
 }
